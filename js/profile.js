@@ -1,7 +1,5 @@
 const api_url = "https://edu.std-900.ist.mospolytech.ru/exam-2024-1/api";
 const token = "559d82a2-9ebd-4bc8-be4a-dfb248f34f04";
-
-const viewButton = document.getEl
     async function fetchOrders() {
         try {
             const response = await fetch(`${api_url}/orders?api_key=${token}`);
@@ -22,7 +20,7 @@ const viewButton = document.getEl
                 </tr>
             `).join('');
         } catch (error) {
-            console.error('Error fetching orders:', error);
+            return;
         }
     }
 
@@ -46,7 +44,7 @@ const viewButton = document.getEl
                 <p><strong>Комментарий:</strong> ${order.comment}</p>
             `;
         } catch (error) {
-            console.error('Error fetching order details:', error);
+            return;
         }
     }
 
@@ -84,7 +82,7 @@ const viewButton = document.getEl
                     fetchOrders();
                     alert('Заказ успешно обновлён!');
                 } catch (error) {
-                    console.error('Error updating order:', error);
+                    return;
                 }
             });
         } catch (error) {
@@ -103,7 +101,7 @@ const viewButton = document.getEl
                 fetchOrders();
                 alert('Заказ успешно обновлён!');
             } catch (error) {
-                console.error('Error updating order:', error);
+                return;
             }
         });
     }
