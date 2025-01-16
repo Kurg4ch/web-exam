@@ -14,8 +14,8 @@ function getCart() {
 function saveCart(cart) {
     try {
         localStorage.setItem('cart', JSON.stringify(cart));
-    } catch (error) {
-        console.error("Ошибка при записи корзины в localStorage:", error);
+    } catch (error){
+        return
     }
 }
 
@@ -46,7 +46,6 @@ function displayCartItems() {
         button = card.querySelector("button.remove-from-cart");
         button.addEventListener('click', () => {
             const goodId = parseInt(button.dataset.id);
-            console.log(goodId);
             removeFromCart(goodId);
         });
         cartItems.appendChild(card);
@@ -83,7 +82,6 @@ orderForm.addEventListener('submit', async (event) => {
         delivery_interval: document.getElementById('deliveryInterval').value,
         comment: document.getElementById('comment').value
     };
-    console.log(JSON.stringify(orderData));
 
     const response = fetch(`${API_URL}/orders?api_key=${token}`, {
         method: 'POST',
