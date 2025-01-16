@@ -25,6 +25,9 @@ function addToCart(goodId) {
     if(!goods.includes(goodId)){
         cart.push({id: goodId});
     }
+    else{
+        alert("заказ уже в корзине");
+    }
 
     saveCart(cart);
     console.log("Корзина:", cart);

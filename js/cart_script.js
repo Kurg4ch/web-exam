@@ -85,13 +85,16 @@ orderForm.addEventListener('submit', async (event) => {
     };
     console.log(JSON.stringify(orderData));
 
-    fetch(`${API_URL}/orders?api_key=${token}`, {
+    const response = fetch(`${API_URL}/orders?api_key=${token}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(orderData)
     })
+    if (response.ok){
+        alert("заказ создан");
+    }
 });
 
 displayCartItems();
