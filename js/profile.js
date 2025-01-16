@@ -1,5 +1,7 @@
 const api_url = "https://edu.std-900.ist.mospolytech.ru/exam-2024-1/api";
 const token = "559d82a2-9ebd-4bc8-be4a-dfb248f34f04";
+
+const viewButton = document.getEl
     async function fetchOrders() {
         try {
             const response = await fetch(`${api_url}/orders?api_key=${token}`);
@@ -25,6 +27,7 @@ const token = "559d82a2-9ebd-4bc8-be4a-dfb248f34f04";
     }
 
 
+
     async function viewOrder(orderId) {
         try {
             const response = await fetch(`${api_url}/orders/${orderId}?api_key=${token}`);
@@ -39,13 +42,15 @@ const token = "559d82a2-9ebd-4bc8-be4a-dfb248f34f04";
                 <p><strong>Адрес доставки:</strong> ${order.delivery_address}</p>
                 <p><strong>Дата доставки:</strong> ${order.delivery_date}</p>
                 <p><strong>Время доставки:</strong> ${order.delivery_time}</p>
-                <p><strong>Состав заказа:</strong> ${order.items.join(', ')}</p>
+                <p><strong>Состав заказа:</strong> ${order.good_ids.join(', ')}</p>
                 <p><strong>Комментарий:</strong> ${order.comment}</p>
             `;
         } catch (error) {
             console.error('Error fetching order details:', error);
         }
     }
+
+
 
     async function editOrder(orderId) {
         try {
@@ -60,7 +65,7 @@ const token = "559d82a2-9ebd-4bc8-be4a-dfb248f34f04";
             document.getElementById('editDeliveryTime').value = order.delivery_time;
             document.getElementById('editComment').value = order.comment;
 
-            document.getElementById('saveEditOrder').onclick = async () => {
+            document.getElementById('saveEditOrder').addEventListener('click',async () => {
                 const updatedOrder = {
                     name: document.getElementById('editName').value,
                     phone: document.getElementById('editPhone').value,
@@ -70,7 +75,6 @@ const token = "559d82a2-9ebd-4bc8-be4a-dfb248f34f04";
                     deliveryTime: document.getElementById('editDeliveryTime').value,
                     comment: document.getElementById('editComment').value,
                 };
-
                 try {
                     await fetch(`${api_url}/orders/${orderId}?api_key=${token}`, {
                         method: 'PUT',
@@ -82,22 +86,27 @@ const token = "559d82a2-9ebd-4bc8-be4a-dfb248f34f04";
                 } catch (error) {
                     console.error('Error updating order:', error);
                 }
-            };
+            });
         } catch (error) {
             console.error('Error fetching order for editing:', error);
         }
     }
 
+
+
     function deleteOrder(orderId) {
-        document.getElementById('confirmDeleteOrder').onclick = async () => {
+        document.getElementById('confirmDeleteOrder').addEventListener('click',async () => {
             try {
-                await fetch(`${api_url}/orders/${orderId}?api_key=${apiKey}`, { method: 'DELETE' });
+                await fetch(`${api_url}/orders/${orderId}?api_key=${token}`, {
+                    method: 'DELETE',
+                });
                 fetchOrders();
-                alert('Заказ успешно удалён!');
+                alert('Заказ успешно обновлён!');
             } catch (error) {
-                console.error('Error deleting order:', error);
+                console.error('Error updating order:', error);
             }
-        };
+        });
     }
+
 
     fetchOrders();

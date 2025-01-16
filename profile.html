@@ -67,7 +67,7 @@
                 <h5 class="modal-title" id="viewOrderLabel">Просмотр заказа</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" id="viewOrderContent">
                 <p><strong>Дата оформления:</strong> 06.01.2025 12:43</p>
                 <p><strong>Имя:</strong> Иванов Иван</p>
                 <p><strong>Номер телефона:</strong> +74952230523</p>
@@ -128,7 +128,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
-                <button type="button" class="btn btn-primary">Сохранить</button>
+                <button type="button" class="btn btn-primary", id="saveEditOrder">Сохранить</button>
             </div>
         </div>
     </div>
@@ -147,7 +147,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Нет</button>
-                <button type="button" class="btn btn-danger">Да</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteOrder">Да</button>
             </div>
         </div>
     </div>
