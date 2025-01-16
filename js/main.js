@@ -52,7 +52,7 @@ async function getAutocomplete(query) {
         }
         return data;
     } catch (error) {
-       catalog.innnerHTML = `<p> Произошла ошибка. Попробуйте позже </p>`ж
+       catalog.innnerHTML = `<p> Произошла ошибка. Попробуйте позже </p>`;
         return;
     }
 }
@@ -133,7 +133,7 @@ async function loadGoods() {
         renderGoods(goodsData);
 
     } catch (error) {
-            catalog.innnerHTML = `<p> Произошла ошибка. Попробуйте позже </p>`ж
+            catalog.innnerHTML = `<p> Произошла ошибка. Попробуйте позже </p>`;
             return;
     }
 }
@@ -175,7 +175,7 @@ function renderGoods(goods) {
 function sortGoods(sortType) {
 
     if (!Array.isArray(goodsData) || goodsData.length === 0) {
-        catalog.innnerHTML = `<p> Произошла ошибка. Попробуйте позже </p>`
+        catalog.innnerHTML = `<p> Произошла ошибка. Попробуйте позже </p>`;
         return;
     }
 
