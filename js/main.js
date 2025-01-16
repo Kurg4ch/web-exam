@@ -30,7 +30,6 @@ function addToCart(goodId) {
     }
 
     saveCart(cart);
-    console.log("Корзина:", cart);
 }
 
 function removeFromCart(itemId) {
@@ -41,7 +40,6 @@ function removeFromCart(itemId) {
     cart = cart.filter(item => item.id !== itemId);
 
     saveCart(cart);
-    console.log("Корзина:", cart);
     displayCartItems();
 }
 
@@ -49,14 +47,12 @@ async function getAutocomplete(query) {
     try {
         const response = await fetch(`${API_URL}/autocomplete?api_key=${token}&query=${query}`);
         const data = await response.json();
-        console.log(data);
-        if (!data || !Array.isArray(data)) {
-            console.error("Некорректный формат данных от сервера:", data);
+        if (!data || !Array.isArray(data) || data.length == 0) {
             return [];
         }
         return data;
     } catch (error) {
-        console.error("Ошибка при запросе автодополнения:", error);
+            <p> Произовла ошибка. Попробуйте позже </p>
         return [];
     }
 }
@@ -65,15 +61,13 @@ async function searchGoods(query) {
     try {
         const response = await fetch(`${API_URL}/goods?api_key=${token}&query=${query}`);
         const data = await response.json();
-        if (!data || !Array.isArray(data)) {
-            console.error("Некорректный формат данных от сервера:", data);
+        if (!data || !Array.isArray(data) || data.length == 0) {
             catalog.innerHTML = '<p>Нет товаров, соответствующих вашему запросу</p>';
             return;
         }
         goodsData = data;
         renderGoods(goodsData);
     } catch (error) {
-        console.error("Ошибка при поиске товаров:", error);
         catalog.innerHTML = '<p>Произошла ошибка при поиске.</p>';
     }
 }
@@ -139,7 +133,7 @@ async function loadGoods() {
         renderGoods(goodsData);
 
     } catch (error) {
-        console.error("Ошибка загрузки товаров:", error);
+            catalog.innnerHTML = `<p> Произовла ошибка. Попробуйте позже </p>`
     }
 }
 
@@ -180,7 +174,7 @@ function renderGoods(goods) {
 function sortGoods(sortType) {
 
     if (!Array.isArray(goodsData) || goodsData.length === 0) {
-        console.error("goodsData не является массивом или пуст. Сортировка невозможна.");
+        catalog.innnerHTML = `<p> Произовла ошибка. Попробуйте позже </p>`
         return;
     }
 
